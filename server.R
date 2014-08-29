@@ -21,13 +21,13 @@ if(file.exists("data/01830002-eng.csv")) {
   unzip("data/01830002-eng.zip", exdir = "data")
 }
 
-employment <- read.csv("data/01830002-eng.csv")
+employment <- read.csv("data/01830002-eng.csv", na.strings = "x")
 keep <- levels(employment$SEC)[c(2, 5:10, 12)] # Remove aggregates to prevent double counting
 
 # Subset the data for Ontario, Provincial employment
 ontario_provincial_employment <- employment %.%
   filter(GEO == "Ontario", SEASONAL == "Unadjusted", COM == "Employment (persons)", SEC %in% keep) %.%
-  mutate(type = SEC, employment = as.numeric(as.character(Value)), 
+  mutate(type = SEC, employment = Value), 
          date = as.Date(paste(Ref_Date, "/01", sep = "")), 
          year = years(date), month = months(date)) %.%
   filter(month == "February") %.% # Use just one month to isolate flucuations
