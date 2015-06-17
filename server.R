@@ -27,7 +27,7 @@ keep <- levels(employment$SEC)[c(2, 5:10, 12)] # Remove aggregates to prevent do
 # Subset the data for Ontario, Provincial employment
 ontario_provincial_employment <- employment %.%
   filter(GEO == "Ontario", SEASONAL == "Unadjusted", COM == "Employment (persons)", SEC %in% keep) %.%
-  mutate(type = SEC, employment = Value), 
+  mutate(type = SEC, employment = Value, 
          date = as.Date(paste(Ref_Date, "/01", sep = "")), 
          year = years(date), month = months(date)) %.%
   filter(month == "February") %.% # Use just one month to isolate flucuations
