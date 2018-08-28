@@ -3,8 +3,8 @@ shinyUI(fluidPage(
   
   sidebarLayout(
     sidebarPanel(
-      helpText("Plot public-sector employment from Cansim table ", a("18-30002.", 
-                                                                     href = "http://www5.statcan.gc.ca/cansim/a26?lang=eng&retrLang=eng&id=1830002")),
+      helpText("Plot public-sector employment from Cansim table ", a("10100025.", 
+                                                                     href = "https://open.canada.ca/data/dataset/b38895a5-eef9-43ad-bd3f-aa2525de8d24")),
       
       uiOutput("choose_employment_types"),
       
